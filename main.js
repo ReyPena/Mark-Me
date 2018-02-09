@@ -42,6 +42,15 @@ app.on('ready', () => {
   }
 });
 
+/**
+ * Quit when all windows are closed.
+ */
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+
 
 // Actions
 ipcMain.on(MAIN_OPEN_FILE, (event) => {
