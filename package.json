@@ -1,0 +1,50 @@
+{
+  "name": "mark-me",
+  "version": "1.0.0",
+  "description": "Markdown editor",
+  "main": "main.js",
+  "scripts": {
+    "build:dev": "webpack --config webpack.dev.config.js --color",
+    "build:prod": "webpack --config webpack.prod.config.js --color",
+    "start": "npm run build:dev & electron -r babel-register .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ReyPena/Mark-Me.git"
+  },
+  "author": "Rey",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "css-loader": "^0.28.9",
+    "electron": "^1.7.11",
+    "electron-devtools-installer": "^2.2.3",
+    "eslint": "^4.17.0",
+    "eslint-config-google": "^0.9.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-react": "^7.6.1",
+    "node-sass": "^4.7.2",
+    "normalize.css": "^7.0.0",
+    "redux-devtools-extension": "^2.13.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "marked": "^0.3.12",
+    "material-design-icons": "^3.0.1",
+    "path-parse": "^1.0.5",
+    "react": "^16.2.0",
+    "react-burger-menu": "^2.2.3",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  }
+}

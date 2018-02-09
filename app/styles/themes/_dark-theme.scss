@@ -1,0 +1,6 @@
+$dark-primary: #1b1a1f;
+$dark-secondary: #4a4a4a;
+
+.dark {
+  @include env-theme($dark-primary, $dark-secondary);
+}

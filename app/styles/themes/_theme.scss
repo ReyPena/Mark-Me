@@ -1,0 +1,33 @@
+@import '../components/index';
+
+/**
+  * text-color mixing
+  * @param {String} $color
+  */
+@function text-color($color) {
+  @if (lightness($color) > 50) {
+    @return #000; // Lighter backgorund, return dark color
+  } @else {
+    @return #fff; // Darker background, return light color
+  }
+}
+
+/**
+  * env-theme mixing
+  * @param {String} $primary
+  * @param {String} $secondary
+  */
+@mixin env-theme( $primary, $secondary ){
+  * {
+    color: text-color($primary);
+  }
+
+  & {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  @include header($primary);
+  @include editor($primary, $secondary);
+};

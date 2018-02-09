@@ -1,0 +1,6 @@
+$light-primary: #f5f5f5;
+$light-secondary: #c2c2c2;
+
+.light {
+  @include env-theme($light-primary, $light-secondary);
+}

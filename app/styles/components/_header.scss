@@ -1,0 +1,30 @@
+@mixin header($color1) {
+  .app-header {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    background-color: $color1;
+    justify-content: space-between;
+  }
+
+  .app-menu {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .app-menu > * {
+    margin: 0 20px;
+    cursor: pointer;
+  }
+
+  li > a {
+    width: 100%;
+  }
+
+  li > span {
+    opacity: 0.5;
+  }
+}
