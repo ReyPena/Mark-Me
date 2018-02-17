@@ -1,12 +1,26 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
-    "google"
+    "plugin:react/recommended"
   ],
   "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
     }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    // react plugin
+    "react/prop-types": ["ignore"],
+
+    // eslint
+    "no-console": ["error", { "allow": ["warn", "error"] }]
   }
 }

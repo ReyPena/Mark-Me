@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import Header from '../components/header.component';
 import Editor from '../components/editor.component';
@@ -20,10 +20,10 @@ class App extends Component {
 }
 
 const mapStateToProps = ({editor}) => {
-  const { theme } = editor;
+  const {theme} = editor;
 
   return {
-    theme
+    theme,
   };
 };
 

@@ -1,7 +1,10 @@
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const APP_DIR =  path.resolve(__dirname, 'app');
-const BUILD_DIR = path.resolve(__dirname, 'public/js');
+const BUILD_DIR = path.resolve(__dirname, 'dist');
 
 module.exports = {
   context: APP_DIR,
@@ -9,8 +12,8 @@ module.exports = {
 
   output: {
     path: BUILD_DIR,
-    publicPath: '/',
-    filename: 'bundle.js'
+    publicPath: './',
+    filename: 'js/[name].[chunkhash].js'
   },
 
   watch: true,
@@ -22,10 +25,10 @@ module.exports = {
     rules: [
       // JS and JSX
       {
-        test: /(\.jsx$|\.js$)/,
+        test: /\.j(sx|s)$/,
         use: [
-          {loader: "eslint-loader"},
-          { loader: 'babel-loader' }
+          { loader: 'babel-loader' },
+          { loader: "eslint-loader" }
         ],
         exclude: /node_modules/
       },
@@ -33,17 +36,36 @@ module.exports = {
       // SCSS
       {
         test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' }
-        ],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        }),
         exclude: /node_modules/
+      },
+
+      // Fonts
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            }
+          }
+        ]
       }
     ]
   },
 
   target: 'electron',
 
-  plugins: []
+  plugins: [
+    new ProgressBarPlugin(),
+    new ExtractTextPlugin('css/style.css'),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+    })
+  ]
 };

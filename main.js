@@ -14,11 +14,14 @@ let mainWindow;
   */
 app.on('ready', () => {
   // Create new window
-  mainWindow = new BrowserWindow({});
+  mainWindow = new BrowserWindow({
+    icon: path.join(__dirname, 'resources/logo/png/64x64.png')
+  });
+
 
   // Load html into window
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, 'dist/index.html'),
     protocol: 'file:',
     slashes: true
   }));

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import marked from 'marked';
 
 class Parser extends Component {
@@ -7,7 +7,7 @@ class Parser extends Component {
     super(props);
 
     this.renderHtml = this.renderHtml.bind(this);
-  };
+  }
 
   renderHtml() {
     marked.setOptions({
@@ -19,7 +19,7 @@ class Parser extends Component {
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      xhtml: false
+      xhtml: false,
     });
 
     return marked(this.props.mdText);
@@ -33,10 +33,10 @@ class Parser extends Component {
 }
 
 const mapStateToProps = ({editor}) => {
-  const { mdText } = editor;
+  const {mdText} = editor;
 
   return {
-    mdText
+    mdText,
   };
 };
 

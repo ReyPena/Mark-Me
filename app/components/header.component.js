@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { ipcRenderer } from "electron";
-import { readFile, writeFile } from 'fs';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {ipcRenderer} from 'electron';
+import {readFile, writeFile} from 'fs';
 
 import {
   MAIN_SAVE_FILE,
   MAIN_OPEN_FILE,
   SAVE_FILE,
-  OPEN_FILE
+  OPEN_FILE,
 } from '../store/constants';
 import {
   changeTheme,
   textChanged,
-  setFilePath
+  setFilePath,
 } from '../store/actions';
 
 class Header extends Component {
@@ -22,12 +22,12 @@ class Header extends Component {
     this.onChangeTheme = this.onChangeTheme.bind(this);
     this.onOpenFile = this.onOpenFile.bind(this);
     this.onSave = this.onSave.bind(this);
-  };
+  }
 
   componentDidMount() {
     ipcRenderer.on(SAVE_FILE, (event, args) => {
       writeFile(args, this.props.mdText, (err) => {
-        if(err){
+        if (err) {
           console.error(err);
         } else {
           this.props.setFilePath(args);
@@ -37,7 +37,7 @@ class Header extends Component {
 
     ipcRenderer.on(OPEN_FILE, (event, args) => {
       readFile(args, 'utf-8', (err, data) => {
-        if(err) {
+        if (err) {
           console.error(err);
         } else {
           this.props.setFilePath(args);
@@ -45,24 +45,24 @@ class Header extends Component {
         }
       });
     });
-  };
+  }
 
   componentWillUnmount() {
     ipcRenderer.removeAllListeners(SAVE_FILE);
     ipcRenderer.removeAllListeners(OPEN_FILE);
-  };
+  }
 
   onChangeTheme() {
     this.props.changeTheme();
-  };
+  }
 
   onOpenFile() {
     ipcRenderer.send(MAIN_OPEN_FILE, '');
-  };
+  }
 
   onSave() {
     ipcRenderer.send(MAIN_SAVE_FILE, '');
-  };
+  }
 
   render() {
     return (
@@ -92,17 +92,17 @@ class Header extends Component {
 }
 
 const mapStateToProps = (props) => {
-  const { name } = props.file;
-  const { mdText } = props.editor;
+  const {name} = props.file;
+  const {mdText} = props.editor;
 
   return {
     name,
-    mdText
+    mdText,
   };
 };
 
 export default connect(mapStateToProps, {
   changeTheme,
   textChanged,
-  setFilePath
+  setFilePath,
 })(Header);

@@ -1,9 +1,9 @@
-require('./styles/index.scss');
+import './styles/index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
 
 import App from './containers/app.container';
 import reducers from './store/reducers';

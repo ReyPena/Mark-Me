@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import {
-  textChanged
+  textChanged,
 } from '../store/actions';
 
 class Editor extends Component {
@@ -10,11 +10,11 @@ class Editor extends Component {
     super(props);
 
     this.onTextChange = this.onTextChange.bind(this);
-  };
+  }
 
   onTextChange(md) {
     this.props.textChanged(md);
-  };
+  }
 
   render() {
     return (
@@ -29,13 +29,13 @@ class Editor extends Component {
 }
 
 const mapStateToProps = ({editor}) => {
-  const { mdText } = editor;
+  const {mdText} = editor;
 
   return {
-    mdText
+    mdText,
   };
 };
 
 export default connect(mapStateToProps, {
-  textChanged
+  textChanged,
 })(Editor);
